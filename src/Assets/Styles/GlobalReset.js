@@ -52,6 +52,9 @@ const GlobalReset = createGlobalStyle`
     *{
         box-sizing: border-box;
     }
+    body{
+        font-family: 'Roboto', sans-serif;    
+    }
 `
 
 export default GlobalReset
