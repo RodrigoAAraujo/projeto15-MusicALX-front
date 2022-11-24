@@ -1,35 +1,46 @@
 import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { SidebarContext } from '../API/sidebar'
+import { UserContext } from '../API/user'
 import { DarkBlue, DarkerGray, Gray, LightBlue, LightGray, White } from '../Settings/colors'
 
 
 export default function NavbarUp(){
+    const {user}= useContext(UserContext)
     const {sidebar , setSidebar} = useContext(SidebarContext)
-    const [search, setSearch] = useState()
-
+    const navigate = useNavigate()
 
     return(
-        <NavStyle search={search}>
+        <NavStyle>
             <div>
                 <ion-icon name="cart" onClick={sidebar? () => setSidebar(false): () => setSidebar(true)}></ion-icon>
                 <h1 onClick={sidebar? () => setSidebar(false): () => setSidebar(true)}>Carrinho</h1>
             </div>
             <nav>
                 <button>
-                    <ion-icon name="search" onClick={search? () => setSidebar(false): () => setSidebar(true)} ></ion-icon>
+                    <ion-icon name="search"></ion-icon>
                 </button>
                 <form>
                     <input placeholder='Filtrar..'></input>
                 </form>
             </nav>
             <div>
-                <h1>Home</h1>
-                <ion-icon name="home"></ion-icon> 
-                <h1>Divulgar Produto</h1>
-                <ion-icon name="add-circle-outline"></ion-icon>
-                <h1>Termos e Condições</h1>
-                <ion-icon name="document-text"></ion-icon>  
+                <h1 onClick={() => navigate(`/${user.name}/dashboard`)}>
+                    Home
+                </h1>
+                <ion-icon name="home" onClick={() => navigate(`/${user.name}/dashboard`)}>
+                </ion-icon> 
+                <h1 onClick={() => navigate(`/${user.name}/cadastrar-produto`)}>
+                    Divulgar Produto
+                </h1>
+                <ion-icon name="add-circle-outline" onClick={() => navigate(`/${user.name}/cadastrar-produto`)}>
+                </ion-icon>
+                <h1 onClick={() => navigate(`/${user.name}/termos_condicoes`)}>
+                    Termos e Condições
+                </h1>
+                <ion-icon name="document-text" onClick={() => navigate(`/${user.name}/termos_condicoes`)}>
+                </ion-icon>  
             </div>
         </NavStyle>
     )
