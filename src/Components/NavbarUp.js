@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { SidebarContext } from '../API/sidebar'
-import { DarkBlue, DarkerGray, DarkGray, Gray, LightBlue, LigthGray, White } from '../Settings/colors'
+import { DarkBlue, DarkerGray, Gray, LightBlue, LightGray, White } from '../Settings/colors'
 
 
 export default function NavbarUp(){
@@ -86,7 +86,7 @@ const NavStyle = styled.nav`
 
 
             :placeholder-shown{
-                background-color: ${LigthGray};
+                background-color: ${LightGray};
             }
             
         }
