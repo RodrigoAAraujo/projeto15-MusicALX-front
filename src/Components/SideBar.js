@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { CartContext } from "../API/cart"
 import { SidebarContext } from "../API/sidebar"
 import { UserContext } from "../API/user"
-import { DarkBlue, DarkGray, DarkRed, Gray, LightBlue, LigthGray, LigthRed, White } from "../Settings/colors"
+import { DarkGray, DarkRed, Gray, LightBlue, LightGray, LigthGray, LigthRed, White } from "../Settings/colors"
 import { ProductsCart } from "./ProductsDisplays"
 
 export default function SideBar() {
@@ -38,25 +38,27 @@ function UserInfo() {
 
 function Cart() {
     const { user } = useContext(UserContext)
-    const { cart } = useContext(CartContext)
+    const { cart, setCart } = useContext(CartContext)
     const navigate = useNavigate()
+
+    console.log(cart)
 
     return (
         <CartStyle>
             <h1>Carrinho</h1>
             {cart.length === 0 ?
-                <div>
+                <div className="empty">
                     <h2>Carrinho Vazio</h2>
                 </div> :
                 <>
-                    {cart.map((p) => {
-                        <ProductsCart product={p} />
-                    })}
+                    {cart.map((p, index) => 
+                        <ProductsCart name={p.name} image={p.image} qtd={p.qtd} value={p.value} position={index}/>
+                    )}
                     <section>
                         <button onClick={() => navigate(`/${user.name}/carrinho/pagamento`)}>Finalizar Compra</button>
-                        <p>Limpar Tudo</p>
+                        <p onClick={() => setCart([])}>Limpar Tudo</p>
                     </section>
-                </> 
+                </>
             }
         </CartStyle >
     )
@@ -75,7 +77,7 @@ const SideBarStyle = styled.aside`
 
 const UserInfoStyle = styled.div`
     padding: 10px;
-    border-top: 1px ${LigthGray} solid;
+    border-top: 1px ${LightGray} solid;
 
     section{
         display: flex;
@@ -118,9 +120,9 @@ const UserInfoStyle = styled.div`
 
 const CartStyle = styled.div`
     padding: 10px;
-    border-top: 1px ${LigthGray} solid;
+    border-top: 1px ${LightGray} solid;
 
-    div{
+    .empty{
         width: 100%;
         border-radius: 8px;
         border: 1px ${Gray} solid;
@@ -136,6 +138,7 @@ const CartStyle = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
+        margin-top: 10px;
 
         button{
             padding: 5px 10px;
