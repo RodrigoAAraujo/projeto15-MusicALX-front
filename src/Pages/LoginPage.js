@@ -23,10 +23,10 @@ export default function LoginPage() {
         e.preventDefault();
         const URL = "http://localhost:5000/sign-in"
         const promise = axios.post(URL, body)
-        promise.then((response) => {
-            setUser(response.data)
-            setInfo(response.data)
-            navigate("`/${res.data.user}/dashboard`");
+        promise.then((res) => {
+            setUser(res.data)
+            setInfo(res.data)
+            navigate(`/${res.data.user}/dashboard`);
         })
         promise.catch(err => {
             console.log(err);
