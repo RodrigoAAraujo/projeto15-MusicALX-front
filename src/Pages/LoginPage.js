@@ -34,8 +34,6 @@ export default function LoginPage() {
         })
     }
 
-
-
     return (
         <LoginScreen>
           <img src={logo} alt="alt" />

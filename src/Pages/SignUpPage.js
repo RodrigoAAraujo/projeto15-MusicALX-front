@@ -32,10 +32,9 @@ export default function SignUpPage() {
         const URL = "https://musicalx.onrender.com/sign-up"
         const promise = axios.post(URL, body)
 
-        promise.then((res) => {
-            setInfo(res.data);
+        promise.then(
             navigate('/')
-        })
+        )
 
         promise.catch((err) => {
             alert("Dados preenchidos de forma incorreta")
@@ -58,7 +57,7 @@ export default function SignUpPage() {
 
                     <input
                         type="email"
-                        onChange={e => setInfo({ ...info, name: e.target.value })}
+                        onChange={e => setInfo({ ...info, email: e.target.value })}
                         placeholder="E-mail"
                         disabled={isClicked ? true : false}
                         required
