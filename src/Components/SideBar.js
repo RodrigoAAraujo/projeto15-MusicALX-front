@@ -41,8 +41,6 @@ function Cart() {
     const { cart, setCart } = useContext(CartContext)
     const navigate = useNavigate()
 
-    console.log(cart)
-
     return (
         <CartStyle>
             <h1>Carrinho</h1>
