@@ -53,7 +53,7 @@ const GlobalReset = createGlobalStyle`
         box-sizing: border-box;
     }
     body{
-        font-family: 'Roboto', sans-serif;    
+        font-family: 'DM Sans', sans-serif;
     }
 `
 
