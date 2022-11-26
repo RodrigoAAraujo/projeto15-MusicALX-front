@@ -12,11 +12,11 @@ export default function SignUpPage() {
 
     const [info, setInfo] = useState({ name: "", email: "", image: "", password: "", confirmPassword: "" })
     const body = {
-        name: (info.name.toLowerCase()),
-        email: (info.email.toLowerCase()),
-        image: (info.image.toLowerCase()),
-        password: (info.password.toLowerCase()),
-        confirmPassword: (info.confirmPassword.toLowerCase())
+        name: (info.name).toLowerCase(),
+        email: (info.email).toLowerCase(),
+        image: (info.image).toLowerCase(),
+        password: (info.password).toLowerCase(),
+        confirmPassword: (info.confirmPassword).toLowerCase()
     }
 
     function handleSubmit(e) {
