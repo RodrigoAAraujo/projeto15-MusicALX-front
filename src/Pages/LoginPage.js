@@ -59,7 +59,7 @@ export default function LoginPage() {
               <button onClick={() => setIsClicked(true)} type="submit">Entrar</button>
             </FormStyle>
           </form>
-          <Link to={"/signup"}><p>Primeira vez? Cadastre-se!</p></Link>
+          <Link to={"/sign-up"}><p>Primeira vez? Cadastre-se!</p></Link>
         </LoginScreen>
       )
 }
