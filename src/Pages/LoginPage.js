@@ -21,7 +21,7 @@ export default function LoginPage() {
 
     function login(e) {
         e.preventDefault();
-        const URL = "http://localhost:5000/sign-in"
+        const URL = "https://musicalx.onrender.com/sign-in"
         const promise = axios.post(URL, body)
         promise.then((res) => {
             setUser(res.data)
