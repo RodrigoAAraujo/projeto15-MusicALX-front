@@ -4,6 +4,7 @@ import styled from "styled-components"
 import axios from "axios"
 import logo from "../Assets/imgs/logo.png"
 import { LightBlue } from "../Settings/colors";
+import swal from 'sweetalert';
 
 export default function SignUpPage() {
     const navigate = useNavigate()
@@ -37,7 +38,9 @@ export default function SignUpPage() {
         )
 
         promise.catch((err) => {
-            alert("Dados preenchidos de forma incorreta")
+            swal("Dados preenchidos de forma incorreta", {
+                className: "red-bg",
+              });
             console.log(err)
         })
     }
