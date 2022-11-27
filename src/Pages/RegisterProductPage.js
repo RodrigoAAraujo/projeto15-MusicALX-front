@@ -3,7 +3,7 @@ import CurrencyInput from "react-currency-input-field";
 import styled from "styled-components";
 import NavbarUp from "../Components/NavbarUp";
 import SideBar from "../Components/SideBar";
-import { DarkBlue, DarkGray, LightBlue, LightGray, White } from "../Settings/colors";
+import { DarkBlue, DarkGray, DarkerGray, LightBlue, LightGray, White } from "../Settings/colors";
 import { BackEnd_Products} from "../Settings/urls";
 import axios from 'axios'
 import { UserContext } from "../API/user";
@@ -110,7 +110,7 @@ export default function RegisterProductPage(){
 const RegisterStyle = styled.main`
     background-color: ${LightBlue};
     min-height: 100vh;
-    margin-top: 60px;
+    margin-top: 40px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -127,7 +127,7 @@ const RegisterStyle = styled.main`
             margin: 20px 4px;
             font-size: 22px;
             font-weight: 700;
-            color: ${White};
+            color: ${DarkerGray};
         }
 
         .vertical{
@@ -151,6 +151,7 @@ const RegisterStyle = styled.main`
         input,select{
             background-color: ${LightGray};
             padding: 7px 10px;
+            margin-top: 6px;
             border-radius: 5px;
             border: none;
             word-break: break-all;
@@ -192,12 +193,14 @@ const RegisterStyle = styled.main`
                 font-size: 40px;
                 color: ${DarkGray};
             }
-            background-color: ${LightGray};
-            padding: 20px;
+            background-color: ${White};
+            padding: 10px;
             border-radius: 10px;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
+            box-shadow: 0px 4px 4px 0px #00000040;  
+
         }
 
         textarea{
@@ -208,7 +211,7 @@ const RegisterStyle = styled.main`
             max-width: 100%;
             min-width: 100%;
             padding: 5px;
-            background-color:${LightGray};
+            background-color:${White};
             box-shadow: 0px 4px 4px 0px #00000040;
             font-family: 'DM Sans', sans-serif;
             
@@ -227,7 +230,8 @@ const RegisterStyle = styled.main`
             margin: 0px auto;
             margin-top: 20px;
             cursor: pointer;
-            background-color:${LightGray};
+            color: ${DarkerGray};
+            background-color:${White};
             box-shadow: 0px 4px 4px 0px #00000040;
             font-weight: 700;
             font-family: 'DM Sans', sans-serif;

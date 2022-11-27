@@ -1,15 +1,14 @@
 import styled from "styled-components"
-import { LightGray, White } from "../Settings/colors"
+import { LightGray, DarkBlue, DarkerGray, White } from "../Settings/colors"
 import logo from '../Assets/imgs/logo.png'
 
 export default function Footer(){
     return(
         <FooterStyle>
-            <img src={logo} width="200px"/>
             <h5>Copyright ©</h5>
             <div></div>
             <h5>Pagamento Seguro</h5>
-            <img alt="Credit Card Logos" title="Credit Card Logos" src="https://www.shift4shop.com/images/credit-card-logos/cc-sm-5.png" width="249" height="28" border="0" />
+            <img alt="Credit Card Logos" title="Credit Card Logos" src="https://www.shift4shop.com/images/credit-card-logos/cc-sm-5.png" width="249" height="26" border="4" />
         </FooterStyle>
     )
 }
@@ -18,7 +17,7 @@ const FooterStyle = styled.footer`
     position: absolute;
     bottom: 0px;
     width:100%;
-    height: 200px;
+    height: 110px;
     background-color: ${White};
     flex-direction: column;
     display: flex;
@@ -28,12 +27,12 @@ const FooterStyle = styled.footer`
     div{
         height: 1px;
         width: 300px;
-        background-color: ${LightGray};
-        margin: 10px
+        background-color: #000000;
+        margin: 4px
     }
     h5{
-        margin: 5px 0px;
+        margin: 2px 0px 8px 0; 
         font-weight: 500;
-        font-size: 16px;
+        font-size: 14px;
     }
 `

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { CartContext } from "../API/cart"
 import { UserContext } from "../API/user"
-import {  LightBlue, LightGray,  LigthRed } from "../Settings/colors"
+import {  LightBlue, LightGray,  LigthRed, White } from "../Settings/colors"
 
 export function ProductsDashboard({_id, product, image, value}){
     const navigate = useNavigate()
@@ -200,18 +200,19 @@ const ProductDetailStyle = styled.div`
 `
 
 const ProductDashStyle = styled.div`
-    background-color: ${LightGray};
+    background-color: ${White};
     padding: 8px;
     margin: 10px 0px;
     border-radius: 5px;
-    margin: 10px;
+    margin: 6px;
     cursor: pointer;
-    width: 270px;
+    width: 160px;
 
     div{
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        
     }
 
     img{
@@ -227,12 +228,13 @@ const ProductDashStyle = styled.div`
         overflow-x: hidden;
         word-break: break-all;
         margin-bottom: 4px;
+        align-self: flex-start;
 
     }
     h3{
         width: 40%;
-        margin-top: 2px;
-        font-size: 18px;
-        align-self: flex-end;
+        margin-top: 6px;
+        font-size: 15px;
+        align-self: flex-start;
     }
 `

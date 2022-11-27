@@ -55,7 +55,7 @@ const SlideProductsStyle = styled.div`
     background-color: ${LightBlue};
 
     h2{
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 400;
         margin-bottom: 10px;
     }

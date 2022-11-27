@@ -2,7 +2,7 @@ import styled from "styled-components"
 import Footer from "../Components/Footer"
 import NavbarUp from "../Components/NavbarUp"
 import SideBar from "../Components/SideBar"
-import { DarkBlue, DarkGray, Gray, LightBlue, LightGray } from "../Settings/colors"
+import { DarkBlue, DarkerGray, White, LightBlue, LightGray, DarkGray } from "../Settings/colors"
 
 export default function TermsPage(){
     return (
@@ -63,18 +63,20 @@ const TermsStyle = styled.main`
         margin: 0px auto;
         padding: 20px 20px 250px 20px;
     }
+
     h1{
         max-width: 1000px;
         margin: 20px auto;
         font-size: 24px;
         font-weight: 500;
-        color: ${DarkBlue};
-        text-decoration: underline;
+        color: ${DarkGray};
     }
+    
     p{
         max-width: 1100px;
         margin: 20px auto;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 300;
+        color: ${DarkerGray};
     }
 `
