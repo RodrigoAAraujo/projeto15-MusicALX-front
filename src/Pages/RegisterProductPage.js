@@ -8,6 +8,7 @@ import { BackEnd_Products} from "../Settings/urls";
 import axios from 'axios'
 import { UserContext } from "../API/user";
 import { useNavigate } from "react-router-dom";
+import Footer from "../Components/Footer";
 
 export default function RegisterProductPage(){
     const [product, setProduct] = useState()
@@ -97,6 +98,8 @@ export default function RegisterProductPage(){
                 value={copy} onChange={(e) => setCopy(e.target.value)}/>
                 <button type="submit"> Adicionar </button>
             </form>
+
+            <Footer/>
         </RegisterStyle>
     )
 }
@@ -104,8 +107,11 @@ export default function RegisterProductPage(){
 const RegisterStyle = styled.main`
     background-color: ${LightBlue};
     min-height: 100vh;
+    margin-top: 60px;
+    position: relative;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 
     #product-register{
         margin: 60px 0px;
