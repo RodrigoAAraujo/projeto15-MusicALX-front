@@ -10,7 +10,7 @@ export function ProductsDashboard({_id, product, image, value}){
     const {user} = useContext(UserContext)
 
     return(
-        <ProductDashStyle onClick={() =>navigate(`/${user.name}/produtos/${_id}`)}>
+        <ProductDashStyle onClick={() =>navigate(`/${user.user.name}/produtos/${_id}`)}>
             <div>
                 <h2>{product}</h2>
             </div>
@@ -48,9 +48,6 @@ export function ProductsCart({product, image, qtd, value, position}){
     const {cart, setCart} = useContext(CartContext)
     let total = Number(value.replace("R$", "").replace(".", "").replace(",", ".").trim())*qtd 
 
-    console.log(qtd)
-    console.log(total)
-
     function removeItem(){
         const newCart = cart.filter((e, index) => index !== position)
         setCart(newCart)
@@ -66,7 +63,7 @@ export function ProductsCart({product, image, qtd, value, position}){
                 <img src={image}/>
                 <section>
                     <h5>Subtotal:</h5>
-                    <h3><span>R$</span>{total}</h3>
+                    <h3><span>R$</span>{total.toFixed(2)}</h3>
                 </section>
 
             </div>
@@ -221,6 +218,7 @@ const ProductDashStyle = styled.div`
         object-fit: cover;
         border-radius: 10px;
         width: 60%;
+        aspect-ratio: 1.2;
     }
 
     h2{

@@ -1,11 +1,13 @@
-import { useContext } from "react"
+import axios from "axios"
+import { useContext, useEffect, useRef } from "react"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { CartContext } from "../API/cart"
 import { SidebarContext } from "../API/sidebar"
 import { UserContext } from "../API/user"
 import { DarkGray, DarkRed, Gray, LightBlue, LightGray, LigthGray, LigthRed, White } from "../Settings/colors"
-import LoadingIcon from "./LoadingIcon"
+import { BackEnd_Payment } from "../Settings/urls"
+import {LoadingIcon }from "./LoadingIcon"
 import { ProductsCart } from "./ProductsDisplays"
 
 export default function SideBar() {
@@ -48,7 +50,20 @@ function Cart() {
     const { cart, setCart } = useContext(CartContext)
     const navigate = useNavigate()
 
-    console.log(cart)
+
+
+    function Pay(){
+        console.log(cart)
+
+        axios.post(BackEnd_Payment, cart, { headers:{Authorization: `Bearer ${user.token}`}, User: `${user.email}`})
+            .then(res =>{
+                console.log(res)
+                setCart([])
+            })
+            .catch(err =>{
+                console.log(err)
+            })
+    }
 
     return (
         <CartStyle>
@@ -62,7 +77,11 @@ function Cart() {
                         <ProductsCart product={p.product} image={p.image} qtd={p.qtd} value={p.value} position={index}/>
                     )}
                     <section>
-                        <button onClick={() => navigate(`/${user.name}/carrinho/pagamento`)}>Finalizar Compra</button>
+                        <button onClick={() =>{
+                            // navigate(`/${user.name}/carrinho/pagamento`)
+                            Pay()
+                        }}>Finalizar Compra
+                        </button>
                         <p onClick={() => setCart([])}>Limpar Tudo</p>
                     </section>
                 </>
