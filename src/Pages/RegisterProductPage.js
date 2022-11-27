@@ -3,7 +3,7 @@ import CurrencyInput from "react-currency-input-field";
 import styled from "styled-components";
 import NavbarUp from "../Components/NavbarUp";
 import SideBar from "../Components/SideBar";
-import { DarkBlue, DarkGray, LightBlue, LightGray } from "../Settings/colors";
+import { DarkBlue, DarkGray, LightBlue, LightGray, White } from "../Settings/colors";
 import { BackEnd_Products} from "../Settings/urls";
 import axios from 'axios'
 
@@ -100,9 +100,9 @@ const RegisterStyle = styled.main`
 
         h2{
             margin: 20px 4px;
-            font-size: 20px;
-            font-weight: 500;
-            color: ${DarkBlue};
+            font-size: 22px;
+            font-weight: 700;
+            color: ${White};
         }
 
         .vertical{
@@ -116,7 +116,6 @@ const RegisterStyle = styled.main`
             display: flex;
             justify-content: space-between;
             margin-bottom: 8px;
-            
 
             @media (max-width: 400px){
                 flex-direction: column;
@@ -131,6 +130,8 @@ const RegisterStyle = styled.main`
             border: none;
             word-break: break-all;
             width: 100%;
+            box-shadow: 0px 4px 4px 0px #00000040;
+            font-family: 'DM Sans', sans-serif;
             
             :focus{
                 outline: 1px solid ${DarkBlue};
@@ -154,7 +155,6 @@ const RegisterStyle = styled.main`
             padding: 7px 10px;
             border-radius: 5px;
             margin: 4px 0px 4px 0px;
-
 
 
             @media (min-width: 400px){
@@ -184,6 +184,8 @@ const RegisterStyle = styled.main`
             min-width: 100%;
             padding: 5px;
             background-color:${LightGray};
+            box-shadow: 0px 4px 4px 0px #00000040;
+            font-family: 'DM Sans', sans-serif;
             
             :focus{
                 outline: 1px solid ${DarkBlue};
@@ -191,13 +193,19 @@ const RegisterStyle = styled.main`
         }
 
         button{
-            padding: 5px ;
+            width: 50%;
+            padding: 5px;
             border-radius: 5px;
+            border-style: none;
             font-size: 18px;
             font-weight: 400;
             margin: 0px auto;
-            margin-top: 8px;
+            margin-top: 20px;
             cursor: pointer;
+            background-color:${LightGray};
+            box-shadow: 0px 4px 4px 0px #00000040;
+            font-weight: 700;
+            font-family: 'DM Sans', sans-serif;
         }
     }
 `
