@@ -47,6 +47,7 @@ export default function LoginPage() {
         })
         promise.catch(err => {
             console.log(err);
+            setIsClicked(false)
             swal("login e/ou senha incorreta ou usuário não cadastrado", {
                 className: "red-bg",
               });

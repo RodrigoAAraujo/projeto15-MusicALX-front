@@ -30,8 +30,6 @@ export default function SignUpPage() {
     
             setUser(data)
             navigate(`/${data.user.name}/dashboard`)
-        }else{
-            navigate("/")
         }
     }, [])
 
@@ -49,15 +47,15 @@ export default function SignUpPage() {
 
         setIsClicked(true)
 
-        promise.then(
-            navigate('/')
+        promise.then( () =>{
+            swal({icon:"success", buttons:"Prosseguir"} ).finally(navigate("/"));
+            }
         )
 
         promise.catch((err) => {
-            swal("Dados preenchidos de forma incorreta", {
+            swal(err.response.data[0], {
                 className: "red-bg",
               });
-            console.log(err)
             setIsClicked(false)
         })
     }
@@ -106,7 +104,7 @@ export default function SignUpPage() {
                         disabled={isClicked ? true : false}
                         required
                     />
-                    <button type="submit">Cadastrar</button>
+                    <button type="submit" disabled={isClicked}>Cadastrar</button>
                 </FormStyle>
             </form>
             <Link to={"/"}><p>Já tem uma conta? Faça login</p></Link>
