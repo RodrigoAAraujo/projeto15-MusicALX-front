@@ -1,14 +1,16 @@
 import userEvent from "@testing-library/user-event"
 import axios from "axios"
 import { useContext, useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import styled from "styled-components"
 import { CartContext } from "../API/cart"
 import { UserContext } from "../API/user"
+import Footer from "../Components/Footer"
+import LoadingIcon from "../Components/LoadingIcon"
 import NavbarUp from "../Components/NavbarUp"
 import { ProductsDetails } from "../Components/ProductsDisplays"
 import SideBar from "../Components/SideBar"
-import { LightBlue, White } from "../Settings/colors"
+import { DarkBlue, LightBlue, LightGray, White } from "../Settings/colors"
 import { BackEnd_Products } from "../Settings/urls"
 
 export default function ProductInfoPage() {
@@ -38,8 +40,6 @@ export default function ProductInfoPage() {
                 .catch(err => {
                     console.log(err)
                 })
-
-              
             
         } else {
             navigate("/")
@@ -53,7 +53,7 @@ export default function ProductInfoPage() {
         for(let i = 1; i <= e; i++){
             array.push(i)
         }
-        setOptions(...options, array)
+        setOptions(array)
     }
 
     function adicionarCarrinho(e){
@@ -93,6 +93,17 @@ export default function ProductInfoPage() {
         
     }
 
+    if(product === null){
+        return(
+            <>
+                <LoadingIcon/>
+                <NavbarUp/>
+                <SideBar/>
+            
+            </>
+        )
+    }
+
     return (
         <InfoStyle>
             <NavbarUp />
@@ -104,17 +115,31 @@ export default function ProductInfoPage() {
                         <ProductsDetails product={product.product} image={product.image} value={product.value} seller={product.seller}
                         copywrite={product.copy} qtd={product.qtd} type={product.type} />
 
-                        <form onSubmit={(e) => adicionarCarrinho(e)}>
-                            <select onChange={(e) => setQtd(e.target.value)} value={qtd} >
-                                {options.map((o) => <option>{o}</option>)}
-                            </select>
-                            <button type="submit">Adicionar ao carrinho</button>
-                        </form>
+                        <article>
+                            <h2> Políticas de Compras:</h2>
+                            <Link to={`/${user.name}/termos_condicoes`}>Política de Reeembolso</Link>
+                            <Link to={`/${user.name}/termos_condicoes`}>Parcelamentos</Link>
+                            <Link to={`/${user.name}/termos_condicoes`}>Entregas</Link>                       
+
+                            <form onSubmit={(e) => adicionarCarrinho(e)}>
+                                <div>
+                                    <label htmlFor="qtd">Quantidade:</label>
+                                    <select name="qtd" onChange={(e) => setQtd(e.target.value)} value={qtd} >
+                                        {options.map((o) => <option>{o}</option>)}
+                                    </select>
+                                </div>
+
+                                <button type="submit">Adicionar ao carrinho</button>
+                            </form>
+                        </article>
                     </>
                 }
-
             </section>
+        
+            <h1>Descrição do Produto</h1>
+            <p>{product.copy}</p>
 
+            <Footer/>
 
         </InfoStyle>
     )
@@ -123,7 +148,25 @@ const InfoStyle = styled.main`
     background-color: ${LightBlue};
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     margin-top:60px;
+    position: relative;
+
+
+    h1{
+        font-size: 32px;
+        font-weight: 500;
+        margin: 30px auto 20px;
+    }
+    p{
+        font-size: 24px;
+        font-weight: 300;
+        width: 90%;
+        max-width: 800px;
+        margin: 8px 0px;
+        align-self: center;
+        text-align: left;
+    }
 
     section{
         margin: 0px auto;
@@ -133,8 +176,65 @@ const InfoStyle = styled.main`
         background-color: ${White};
         display: flex;
 
-        @media (max-width: 600px){
+        @media (max-width: 1080px){
             flex-direction: column;
+        }
+
+        form{
+            display: flex;
+            align-items: center;
+            justify-content:center;
+            width: 100%;
+            margin: 20px 0px;
+            display: flex;
+            flex-direction: column;
+
+
+            label{
+                margin-right: 10px;
+                font-size: 20px;
+            }
+
+            button{
+                padding: 5px 10px;
+                border-radius: 5px;
+                margin-top: 15px;
+                transition: 0.2s;
+                cursor: pointer;
+
+                :hover{
+                    background-color: ${LightBlue};
+                }
+            }
+        }
+
+        article{
+            border-left:1px ${LightGray} solid ;
+            margin: 10px 0px;
+            width: 50%;
+
+            @media(max-width: 1080px){
+                width: 90%;
+                border-top: 1px ${LightGray} solid ;
+                border-left: none;
+                margin:auto;
+            }
+
+            h2{
+                font-size: 20px;
+                font-weight: 400;
+                margin: 10px;
+            }
+            a{
+                color: ${LightBlue};
+                text-decoration: none;
+                transition: 0.2s;
+                margin: 20px 10px;
+
+                :hover{
+                    color: ${DarkBlue};
+                }
+            }
         }
     }
 `
