@@ -5,6 +5,7 @@ import { CartContext } from "../API/cart"
 import { SidebarContext } from "../API/sidebar"
 import { UserContext } from "../API/user"
 import { DarkGray, DarkRed, Gray, LightBlue, LightGray, LigthGray, LigthRed, White } from "../Settings/colors"
+import LoadingIcon from "./LoadingIcon"
 import { ProductsCart } from "./ProductsDisplays"
 
 export default function SideBar() {
@@ -22,15 +23,21 @@ function UserInfo() {
     const { user } = useContext(UserContext)
     const navigate = useNavigate()
 
+    if(user.user === undefined){
+        return(
+            <LoadingIcon/>
+        )
+    }
+
     return (
         <UserInfoStyle>
             <section>
-                <img src={user.image} />
-                <ion-icon name="log-out-outline" onClick={() => navigate("/")}></ion-icon>
+                <img src={user?.user.image}/>
+                <ion-icon name="log-out-outline" onClick={() => {localStorage.removeItem("user"); navigate("/")}}></ion-icon>
             </section>
 
-            <h3>{user.name}</h3>
-            <h4>{user.email}</h4>
+            <h3>{user?.user.name}</h3>
+            <h4>{user?.user.email}</h4>
         </UserInfoStyle>
     )
 
@@ -41,6 +48,8 @@ function Cart() {
     const { cart, setCart } = useContext(CartContext)
     const navigate = useNavigate()
 
+    console.log(cart)
+
     return (
         <CartStyle>
             <h1>Carrinho</h1>
@@ -50,7 +59,7 @@ function Cart() {
                 </div> :
                 <>
                     {cart.map((p, index) => 
-                        <ProductsCart name={p.name} image={p.image} qtd={p.qtd} value={p.value} position={index}/>
+                        <ProductsCart product={p.product} image={p.image} qtd={p.qtd} value={p.value} position={index}/>
                     )}
                     <section>
                         <button onClick={() => navigate(`/${user.name}/carrinho/pagamento`)}>Finalizar Compra</button>

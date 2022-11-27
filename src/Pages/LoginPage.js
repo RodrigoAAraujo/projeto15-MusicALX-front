@@ -1,10 +1,11 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate, Link } from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
 import logo from "../Assets/imgs/logo.png"
 import { LightBlue } from "../Settings/colors";
 import { UserContext } from "../API/user"
+import { BackEnd_Login } from '../Settings/urls'
 import swal from 'sweetalert';
 
 
@@ -20,14 +21,29 @@ export default function LoginPage() {
         password: (info.password).toLowerCase(),
     }
 
+    useEffect(()=>{
+        if(localStorage.getItem("user")){
+            const data = JSON.parse(localStorage.getItem("user"))
+    
+            setUser(data)
+            navigate(`/${data.user.name}/dashboard`)
+        }else{
+            navigate("/")
+        }
+    }, [])
+
     function login(e) {
         e.preventDefault();
-        const URL = "https://musicalx.onrender.com/sign-in"
-        const promise = axios.post(URL, body)
+        const promise = axios.post(BackEnd_Login, body)
+
+        setIsClicked(true)
+
         promise.then((res) => {
             setUser(res.data)
             setInfo(res.data)
-            navigate(`/${res.data.user}/dashboard`);
+            navigate(`/${res.data.user.name}/dashboard`);
+            setIsClicked(false)
+            localStorage.setItem("user",  JSON.stringify(res.data))
         })
         promise.catch(err => {
             console.log(err);
@@ -41,7 +57,7 @@ export default function LoginPage() {
     return (
         <LoginScreen>
           <img src={logo} alt="alt" />
-          <form onSubmit={login}>
+          <form onSubmit={(e) => login(e)}>
             <FormStyle>
               <input
                 type="email"
@@ -58,7 +74,7 @@ export default function LoginPage() {
                 disabled={isClicked ? true : false}
                 required
               />
-              <button onClick={() => setIsClicked(true)} type="submit">Entrar</button>
+              <button type="submit">Entrar</button>
             </FormStyle>
           </form>
           <Link to={"/sign-up"}><p>Primeira vez? Cadastre-se!</p></Link>
@@ -133,5 +149,6 @@ const FormStyle = styled.div`
         font-family: 'DM Sans', sans-serif;
 		font-size: 20px;
         box-shadow: 0px 4px 4px 0px #00000040;
+        cursor: pointer;
     }
  `

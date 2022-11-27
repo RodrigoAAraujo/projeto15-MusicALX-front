@@ -23,13 +23,33 @@ export function ProductsDashboard({_id, product, image, value}){
     
 }
 
-export function ProductsDetails({name, image, value, seller, copywrite}){
+export function ProductsDetails({product, image, value, seller, copywrite, qtd, type}){
+    return(
+        <ProductDetailStyle>      
+            <img src={image}/>
+            <div className="info">
+                <h2>{product}</h2>
 
+                <section>
+                    <h4>Informações do produto</h4>
+                    
+                    <p>Vendedor: {seller}</p>
+                    <p>Estoque: {qtd}</p>
+                    <p>Categoria: {type}</p>
+
+                </section>
+                <h3> Preço Unitário: {value}</h3>
+            </div>
+        </ProductDetailStyle>
+    )
 }
 
-export function ProductsCart({name, image, qtd, value, position, _id}){
+export function ProductsCart({product, image, qtd, value, position}){
     const {cart, setCart} = useContext(CartContext)
-    const total = Number(value.replace("R$", ""))*qtd 
+    let total = Number(value.replace("R$", "").replace(".", "").replace(",", ".").trim())*qtd 
+
+    console.log(qtd)
+    console.log(total)
 
     function removeItem(){
         const newCart = cart.filter((e, index) => index !== position)
@@ -39,7 +59,7 @@ export function ProductsCart({name, image, qtd, value, position, _id}){
     return(
         <ProductCartStyle>
             <div>
-                <h2>{name}</h2>
+                <h2>{product}</h2>
                 <ion-icon name="close-circle" onClick={() =>removeItem()}></ion-icon>
             </div>
             <div>
@@ -108,6 +128,68 @@ const ProductCartStyle = styled.div`
         align-self: flex-start;
     }
 
+`
+
+const ProductDetailStyle = styled.div`
+    padding: 8px;
+    margin: 10px 0px;
+    border-radius: 5px;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 800px;
+
+    .info{
+        width: 100%;
+    }
+
+    div{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        margin: 0px 10px;
+        width: 50%;
+        
+
+        section{
+            display: flex;
+            flex-direction: column;
+            padding: 5px 0px;
+            align-items: flex-start;
+            border-top: 1px solid ${LightGray};
+            border-bottom: 1px solid ${LightGray};
+            width: 100%;
+            margin: 20px 0px;
+            h4{
+                font-size: 24px;
+                font-weight: 500;
+
+            }
+            p{
+                margin: 5px 0px;
+            }
+        }
+    }
+
+    img{
+        object-fit: cover;
+        border-radius: 10px;
+        aspect-ratio: 1;
+        width: 50%;
+    }
+
+    h2{
+        font-size: 20px;
+        font-weight: 500;
+        overflow-x: hidden;
+        word-break: break-all;
+        margin-bottom: 4px;
+
+    }
+    h3{
+        font-size: 18px;
+        align-self: flex-end;
+    }
 `
 
 const ProductDashStyle = styled.div`
