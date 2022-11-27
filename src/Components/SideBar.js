@@ -178,7 +178,7 @@ const CartStyle = styled.div`
         }
     }
     h1{
-        font-size: 30px;
+        font-size: 25px;
         font-weight: 500;
         margin-top: 10px;
     }

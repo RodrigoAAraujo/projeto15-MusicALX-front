@@ -148,25 +148,9 @@ const InfoStyle = styled.main`
     background-color: ${LightBlue};
     min-height: 100vh;
     display: flex;
-    flex-direction: column;
     margin-top:60px;
-    position: relative;
 
-
-    h1{
-        font-size: 32px;
-        font-weight: 500;
-        margin: 30px auto 20px;
-    }
-    p{
-        font-size: 24px;
-        font-weight: 300;
-        width: 90%;
-        max-width: 800px;
-        margin: 8px 0px;
-        align-self: center;
-        text-align: left;
-    }
+    
 
     section{
         margin: 0px auto;

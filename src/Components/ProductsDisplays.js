@@ -140,6 +140,7 @@ const ProductDetailStyle = styled.div`
     width: 60%;
 
     @media (max-width: 1080px){
+        margin-left: 45px;
         width: 100%;
     }
     @media (max-width: 500px){
@@ -189,11 +190,6 @@ const ProductDetailStyle = styled.div`
         border-radius: 10px;
         aspect-ratio: 1;
         width: 50%;
-
-        @media(max-width: 500px){
-            width: 90%;
-            margin: auto;
-        }
     }
 
     h2{

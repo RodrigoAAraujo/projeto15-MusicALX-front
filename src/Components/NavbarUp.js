@@ -8,7 +8,7 @@ import { DarkBlue, DarkerGray, Gray, LightBlue, LightGray, White } from '../Sett
 
 export default function NavbarUp(){
     const {user}= useContext(UserContext)
-    const {sidebar , setSidebar} = useContext(SidebarContext)
+    const {sidebar, setSidebar} = useContext(SidebarContext)
     const navigate = useNavigate()
 
     return(
@@ -68,9 +68,10 @@ const NavStyle = styled.nav`
         }
 
         button{
-            padding: 5px;
+            height: 100%;
+            padding: 4.5px;
             font-size: 22px;
-            border-radius: 5px 0px 0px 5px;
+            border-radius: 4px 0px 0px 4px;
             cursor: pointer;
             background-color: ${Gray};
             color: ${DarkBlue};
@@ -81,7 +82,7 @@ const NavStyle = styled.nav`
             }
         }
         input{
-            padding: 7px 5px;
+            padding: 5px 5px 5px 11px;
             font-size: 20px;
             border-radius: 0px 5px 5px 0px;
             cursor: text;
@@ -90,6 +91,7 @@ const NavStyle = styled.nav`
             border: none;
             width: 35vw;
             background-color: ${White};
+            font-family: 'DM Sans', sans-serif;
 
             @media (max-width: 1080px) {
                 width: 40vw;
