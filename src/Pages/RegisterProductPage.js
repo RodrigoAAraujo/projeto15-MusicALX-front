@@ -9,6 +9,7 @@ import axios from 'axios'
 import { UserContext } from "../API/user";
 import { useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
+import { CartContext } from "../API/cart";
 
 export default function RegisterProductPage(){
     const [product, setProduct] = useState()
@@ -19,8 +20,10 @@ export default function RegisterProductPage(){
     const [copy, setCopy] = useState()
     const [value, setValue] = useState()
 
-    const {setUser} = useContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
+    const {cart} = useContext(CartContext)
     const navigate = useNavigate()
+    console.log(cart)
 
     useEffect(()=>{
         if(localStorage.getItem("user")){
@@ -30,7 +33,7 @@ export default function RegisterProductPage(){
         }else{
             navigate("/")
         }
-    }, [])
+    }, [cart])
 
     function registerProduct(e){
         e.preventDefault()
@@ -47,7 +50,7 @@ export default function RegisterProductPage(){
 
         console.log(body)
     
-        axios.post(BackEnd_Products, body)
+        axios.post(BackEnd_Products, body, { headers:{Authorization: `Bearer ${user.token}`}})
             .then(res =>{
                 console.log(res)
             })

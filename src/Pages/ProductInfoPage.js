@@ -6,7 +6,7 @@ import styled from "styled-components"
 import { CartContext } from "../API/cart"
 import { UserContext } from "../API/user"
 import Footer from "../Components/Footer"
-import LoadingIcon from "../Components/LoadingIcon"
+import {LoadingIcon} from "../Components/LoadingIcon.js"
 import NavbarUp from "../Components/NavbarUp"
 import { ProductsDetails } from "../Components/ProductsDisplays"
 import SideBar from "../Components/SideBar"
@@ -71,9 +71,16 @@ export default function ProductInfoPage() {
             const index = cart.find(e => e.id === body.id)
             const position = cart.indexOf(index)
 
-            const current = cart[position].qtd
+            //Quantity in cart
+            const current = Number(cart[position].qtd)
             const summed = current + qtd
             body.qtd = summed
+
+            if (summed > product.qtd){
+                body.qtd = options[options.length -1]
+            }
+
+            //Adding in cart
 
             const newCart = cart
             let tempo = newCart[position]
@@ -83,7 +90,7 @@ export default function ProductInfoPage() {
             newCart.pop()
             newCart.push(body)
 
-            console.log(newCart)
+            
 
             setCart(newCart)
         }else{
@@ -96,10 +103,9 @@ export default function ProductInfoPage() {
     if(product === null){
         return(
             <>
+                <NavbarUp />
+                <SideBar />
                 <LoadingIcon/>
-                <NavbarUp/>
-                <SideBar/>
-            
             </>
         )
     }
@@ -108,7 +114,7 @@ export default function ProductInfoPage() {
         <InfoStyle>
             <NavbarUp />
             <SideBar />
-            <section>
+            <section className="info-display">
                 {product === null ?
                     null :
                     <>
@@ -152,7 +158,7 @@ const InfoStyle = styled.main`
 
     
 
-    section{
+    .info-display{
         margin: 0px auto;
         width: 100%;
 

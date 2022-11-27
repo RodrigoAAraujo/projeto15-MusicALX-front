@@ -15,6 +15,8 @@ export default function DashboardPage(){
                 <SlideProducts type="Instrumento de Tecla"/>
                 <SlideProducts type="Instrumento de Sopro"/>
                 <SlideProducts type="Instrumento de Corda"/>
+                <SlideProducts type="Eletrônicos"/>
+                <SlideProducts type="Outro"/>
             </div>
             <Footer/>
         </DashboardStyle>
@@ -27,6 +29,7 @@ const DashboardStyle = styled.main`
     display: flex;
     flex-direction: column;
     margin-top:60px;
+    padding-bottom: 200px;
     position: relative;
 
     .vertical{

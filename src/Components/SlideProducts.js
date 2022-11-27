@@ -6,10 +6,12 @@ import { ProductsDashboard } from "./ProductsDisplays"
 import { DarkBlue, LightBlue } from "../Settings/colors"
 import { UserContext } from "../API/user"
 import { useNavigate } from "react-router-dom"
+import {LoadingIconSmall} from "./LoadingIcon.js"
 
 export default function SlideProducts({type}){
     const [products, setProducts] = useState([])
     const {user, setUser}= useContext(UserContext)
+    const [load, setLoading] = useState(true)
 
     const navigate = useNavigate()
 
@@ -24,9 +26,11 @@ export default function SlideProducts({type}){
             .then(res =>{
                 console.log(res.data)
                 setProducts(res.data)
+                setLoading(false)
             })
             .catch(err =>{
                 console.log(err)
+                setLoading(false)
             })
         }else{
             navigate("/")
@@ -40,6 +44,7 @@ export default function SlideProducts({type}){
             <div className="display-products">
                 {products.length > 0? products.map((p) => <ProductsDashboard _id={p._id} product={p.product} image={p.image} value={p.value}/>): null}
             </div>
+            {load? <LoadingIconSmall/>: null}  
         </SlideProductsStyle>
     )
 }
