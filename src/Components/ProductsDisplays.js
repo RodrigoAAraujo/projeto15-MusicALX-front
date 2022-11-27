@@ -131,16 +131,29 @@ const ProductCartStyle = styled.div`
 `
 
 const ProductDetailStyle = styled.div`
-    padding: 8px;
+    padding: 15px;
     margin: 10px 0px;
     border-radius: 5px;
-    margin: 10px;
     display: flex;
     justify-content: space-between;
-    max-width: 800px;
+    max-width: 1100px;
+    width: 60%;
+
+    @media (max-width: 1080px){
+        width: 100%;
+    }
+    @media (max-width: 500px){
+        flex-direction: column;
+        padding: 0px;
+    }
 
     .info{
-        width: 100%;
+        width: 90%;
+        margin-left: 20px;
+
+        @media(max-width:500px){
+            margin: auto;
+        }
     }
 
     div{
@@ -176,15 +189,16 @@ const ProductDetailStyle = styled.div`
         border-radius: 10px;
         aspect-ratio: 1;
         width: 50%;
+
+        @media(max-width: 500px){
+            width: 90%;
+            margin: auto;
+        }
     }
 
     h2{
         font-size: 20px;
         font-weight: 500;
-        overflow-x: hidden;
-        word-break: break-all;
-        margin-bottom: 4px;
-
     }
     h3{
         font-size: 18px;

@@ -1,8 +1,5 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { UserContext } from "../API/user";
+import Footer from "../Components/Footer";
 import NavbarUp from "../Components/NavbarUp";
 import SideBar from "../Components/SideBar";
 import SlideProducts from "../Components/SlideProducts";
@@ -19,6 +16,7 @@ export default function DashboardPage(){
                 <SlideProducts type="Instrumento de Sopro"/>
                 <SlideProducts type="Instrumento de Corda"/>
             </div>
+            <Footer/>
         </DashboardStyle>
     )
 }
@@ -27,7 +25,9 @@ const DashboardStyle = styled.main`
     background-color: ${LightBlue};
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     margin-top:60px;
+    position: relative;
 
     .vertical{
         display: flex;
