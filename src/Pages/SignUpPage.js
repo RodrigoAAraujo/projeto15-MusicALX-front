@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
 import logo from "../Assets/imgs/logo.png"
-import { LightBlue } from "../Settings/colors";
+import { LightBlue, DarkGray, DarkerGray } from "../Settings/colors";
 import { BackEnd_SignUp } from "../Settings/urls"
 import { UserContext } from "../API/user"
 import swal from 'sweetalert';
@@ -129,7 +129,7 @@ const LoginScreen = styled.div`
 	}
 
     p {
-        color: #FFFFFF;
+        color: ${DarkerGray};
 		font-size: 15px;
         font-weight: 700;
 		text-decoration: underline;
@@ -157,7 +157,7 @@ const FormStyle = styled.div`
     }
 
     input::placeholder {
-        color: #000000;
+        color: ${DarkGray};
     }
 
     input:disabled {
@@ -169,7 +169,7 @@ const FormStyle = styled.div`
         display: flex;
         justify-content: center;
         border-style: none;
-		color: #000000;
+		color: ${DarkGray};
         width: 280px;
 		height: 45px;
         margin: 8px 36px 6px 36px;
