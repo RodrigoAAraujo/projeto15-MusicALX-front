@@ -26,20 +26,20 @@ export default function NavbarUp(){
                 </form>
             </nav>
             <div>
-                <h1 onClick={() => navigate(`/${user.name}/dashboard`)}>
+                <h1 onClick={() => navigate(`/${user.user.name}/dashboard`)}>
                     Home
                 </h1>
-                <ion-icon name="home" onClick={() => navigate(`/${user.name}/dashboard`)}>
+                <ion-icon name="home" onClick={() => navigate(`/${user.user.name}/dashboard`)}>
                 </ion-icon> 
-                <h1 onClick={() => navigate(`/${user.name}/cadastrar-produto`)}>
+                <h1 onClick={() => navigate(`/${user.user.name}/cadastrar-produto`)}>
                     Divulgar Produto
                 </h1>
-                <ion-icon name="add-circle-outline" onClick={() => navigate(`/${user.name}/cadastrar-produto`)}>
+                <ion-icon name="add-circle-outline" onClick={() => navigate(`/${user.user.name}/cadastrar-produto`)}>
                 </ion-icon>
-                <h1 onClick={() => navigate(`/${user.name}/termos_condicoes`)}>
+                <h1 onClick={() => navigate(`/${user.user.name}/termos_condicoes`)}>
                     Termos e Condições
                 </h1>
-                <ion-icon name="document-text" onClick={() => navigate(`/${user.name}/termos_condicoes`)}>
+                <ion-icon name="document-text" onClick={() => navigate(`/${user.user.name}/termos_condicoes`)}>
                 </ion-icon>  
             </div>
         </NavStyle>
@@ -60,7 +60,7 @@ const NavStyle = styled.nav`
     font-size: 24px;
 
     ion-icon{
-        color: $;
+        color: ${White};
     }
 
     nav{
