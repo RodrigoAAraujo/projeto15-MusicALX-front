@@ -1,23 +1,38 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
 import logo from "../Assets/imgs/logo.png"
 import { LightBlue } from "../Settings/colors";
+import { BackEnd_SignUp } from "../Settings/urls"
+import { UserContext } from "../API/user"
 
 export default function SignUpPage() {
     const navigate = useNavigate()
+    const {setUser}= useContext(UserContext)
 
     const [isClicked, setIsClicked] = useState(false)
 
     const [info, setInfo] = useState({ name: "", email: "", image: "", password: "", confirmPassword: "" })
+
     const body = {
         name: (info.name).toLowerCase(),
         email: (info.email).toLowerCase(),
-        image: (info.image).toLowerCase(),
+        image: (info.image).toLowerCase().trim(),
         password: (info.password).toLowerCase(),
         confirmPassword: (info.confirmPassword).toLowerCase()
     }
+
+    useEffect(()=>{
+        if(localStorage.getItem("user")){
+            const data = JSON.parse(localStorage.getItem("user"))
+    
+            setUser(data)
+            navigate(`/${data.user.name}/dashboard`)
+        }else{
+            navigate("/")
+        }
+    }, [])
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -29,24 +44,27 @@ export default function SignUpPage() {
     }
 
     function registration() {
-        const URL = "https://musicalx.onrender.com/sign-up"
-        const promise = axios.post(URL, body)
+        const promise = axios.post(BackEnd_SignUp, body)
+
+        setIsClicked(true)
 
         promise.then((res) => {
             setInfo(res.data);
             navigate('/')
+            setIsClicked(false)
         })
 
         promise.catch((err) => {
             alert("Dados preenchidos de forma incorreta")
             console.log(err)
+            setIsClicked(false)
         })
     }
 
     return (
         <LoginScreen>
             <img src={logo} alt="alt" />
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => handleSubmit(e)}>
                 <FormStyle>
                     <input
                         type="text"
@@ -58,7 +76,7 @@ export default function SignUpPage() {
 
                     <input
                         type="email"
-                        onChange={e => setInfo({ ...info, name: e.target.value })}
+                        onChange={e => setInfo({ ...info, email: e.target.value })}
                         placeholder="E-mail"
                         disabled={isClicked ? true : false}
                         required
@@ -87,7 +105,7 @@ export default function SignUpPage() {
                         disabled={isClicked ? true : false}
                         required
                     />
-                    <button onClick={() => setIsClicked(true)} type="submit">Cadastrar</button>
+                    <button type="submit">Cadastrar</button>
                 </FormStyle>
             </form>
             <Link to={"/"}><p>Já tem uma conta? Faça login</p></Link>
@@ -163,5 +181,6 @@ const FormStyle = styled.div`
         font-family: 'DM Sans', sans-serif;
 		font-size: 20px;
         box-shadow: 0px 4px 4px 0px #00000040;
+        cursor: pointer;
     }
  `

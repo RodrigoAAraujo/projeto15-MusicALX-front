@@ -1,26 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { UserContext } from "../API/user";
 import NavbarUp from "../Components/NavbarUp";
-import { ProductsDashboard } from "../Components/ProductsDisplays";
 import SideBar from "../Components/SideBar";
 import SlideProducts from "../Components/SlideProducts";
 import { LightBlue } from "../Settings/colors";
-import { BackEnd_Products } from "../Settings/urls";
 
 export default function DashboardPage(){
-    const [products, setProducts] = useState([])
-
-    useEffect(()=>{
-        axios.get(BackEnd_Products)
-            .then(res =>{
-                console.log(res.data)
-                setProducts(res.data)
-            })
-            .catch(err =>{
-                console.log(err)
-            })
-    },[])
 
     return(
         <DashboardStyle>  

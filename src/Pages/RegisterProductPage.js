@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import CurrencyInput from "react-currency-input-field";
 import styled from "styled-components";
 import NavbarUp from "../Components/NavbarUp";
@@ -6,6 +6,8 @@ import SideBar from "../Components/SideBar";
 import { DarkBlue, DarkGray, LightBlue, LightGray } from "../Settings/colors";
 import { BackEnd_Products} from "../Settings/urls";
 import axios from 'axios'
+import { UserContext } from "../API/user";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterProductPage(){
     const [product, setProduct] = useState()
@@ -15,6 +17,19 @@ export default function RegisterProductPage(){
     const [image, setImage] = useState()
     const [copy, setCopy] = useState()
     const [value, setValue] = useState()
+
+    const {setUser} = useContext(UserContext)
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        if(localStorage.getItem("user")){
+            const data = JSON.parse(localStorage.getItem("user"))
+    
+            setUser(data)
+        }else{
+            navigate("/")
+        }
+    }, [])
 
     function registerProduct(e){
         e.preventDefault()
