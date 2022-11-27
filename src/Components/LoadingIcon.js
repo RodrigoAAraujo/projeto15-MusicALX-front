@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import icon from '../Assets/imgs/Spinner-0.9s-400px.gif'
-import iconSmaller from '../Assets/imgs/Spinner-0.9s-267px.gif'
+import iconSmaller from '../Assets/imgs/Spinner-0.9s-221px.gif'
 import { LightBlue } from "../Settings/colors"
 
 export function LoadingIcon(){
