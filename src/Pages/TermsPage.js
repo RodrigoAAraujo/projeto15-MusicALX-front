@@ -1,10 +1,26 @@
+import { useContext, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
+import { UserContext } from "../API/user"
 import Footer from "../Components/Footer"
 import NavbarUp from "../Components/NavbarUp"
 import SideBar from "../Components/SideBar"
-import { DarkBlue, DarkerGray, White, LightBlue, LightGray, DarkGray } from "../Settings/colors"
+import { DarkerGray,  LightBlue,  DarkGray } from "../Settings/colors"
 
 export default function TermsPage(){
+    const {setUser} = useContext(UserContext)
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        if(localStorage.getItem("user")){
+            const data = JSON.parse(localStorage.getItem("user"))
+    
+            setUser(data)
+        }else{
+            navigate("/")
+        }
+    }, [])
+
     return (
         <TermsStyle>
             <NavbarUp/>
