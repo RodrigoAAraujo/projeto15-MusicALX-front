@@ -6,6 +6,7 @@ import logo from "../Assets/imgs/logo.png"
 import { LightBlue } from "../Settings/colors";
 import { UserContext } from "../API/user"
 import { BackEnd_Login } from '../Settings/urls'
+import swal from 'sweetalert';
 
 
 export default function LoginPage() {
@@ -46,8 +47,10 @@ export default function LoginPage() {
         })
         promise.catch(err => {
             console.log(err);
-            alert("login e/ou senha incorreta ou usuário não cadastrado");
-            setIsClicked(false)
+            swal("login e/ou senha incorreta ou usuário não cadastrado", {
+                className: "red-bg",
+              });
+           
         })
     }
 

@@ -6,6 +6,7 @@ import logo from "../Assets/imgs/logo.png"
 import { LightBlue } from "../Settings/colors";
 import { BackEnd_SignUp } from "../Settings/urls"
 import { UserContext } from "../API/user"
+import swal from 'sweetalert';
 
 export default function SignUpPage() {
     const navigate = useNavigate()
@@ -48,14 +49,14 @@ export default function SignUpPage() {
 
         setIsClicked(true)
 
-        promise.then((res) => {
-            setInfo(res.data);
+        promise.then(
             navigate('/')
-            setIsClicked(false)
-        })
+        )
 
         promise.catch((err) => {
-            alert("Dados preenchidos de forma incorreta")
+            swal("Dados preenchidos de forma incorreta", {
+                className: "red-bg",
+              });
             console.log(err)
             setIsClicked(false)
         })
