@@ -59,6 +59,10 @@ const NavStyle = styled.nav`
     color: ${White} ;
     font-size: 24px;
 
+    ion-icon{
+        color: $;
+    }
+
     nav{
         display: flex;
         align-items: center;
