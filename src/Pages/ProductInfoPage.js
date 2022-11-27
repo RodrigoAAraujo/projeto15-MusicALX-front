@@ -123,7 +123,14 @@ const InfoStyle = styled.main`
     background-color: ${LightBlue};
     min-height: 100vh;
     display: flex;
-    margin-top:60px;
+    margin-top: 60px;
+
+    button {
+        height: 20px;
+    }
+    select {
+        margin: 0 5px 0 10px;
+    }
 
     section{
         margin: 0px auto;

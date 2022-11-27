@@ -140,6 +140,7 @@ const ProductDetailStyle = styled.div`
     max-width: 800px;
 
     .info{
+        margin-left: 45px;
         width: 100%;
     }
 
@@ -175,7 +176,7 @@ const ProductDetailStyle = styled.div`
         object-fit: cover;
         border-radius: 10px;
         aspect-ratio: 1;
-        width: 50%;
+        width: 40%;
     }
 
     h2{

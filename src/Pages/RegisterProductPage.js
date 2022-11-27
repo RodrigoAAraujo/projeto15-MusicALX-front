@@ -72,6 +72,7 @@ export default function RegisterProductPage(){
                             <option>Instrumento de Tecla</option>
                             <option>Instrumento de Sopro</option>
                             <option>Eletrônicos</option>
+                            <option>Outro</option>
                         </select>
                         <input placeholder="Quantidade" type="number" max={50} required
                         value={qtd} onChange={(e) => setQtd(e.target.value)}/>
