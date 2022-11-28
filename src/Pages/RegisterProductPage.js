@@ -99,7 +99,7 @@ export default function RegisterProductPage(){
 
                 <textarea placeholder="Descrição do Produto" required
                 value={copy} onChange={(e) => setCopy(e.target.value)}/>
-                <button type="submit"> Adicionar </button>
+                <button type="submit" onClick={() => navigate(`/${user.user.name}/dashboard`)}> Adicionar </button>
             </form>
 
             <Footer/>
@@ -117,7 +117,7 @@ const RegisterStyle = styled.main`
     align-items: center;
 
     #product-register{
-        margin: 60px 0px;
+        margin: 40px 0px;
         width: 90%;
         max-width: 800px;
         display: flex;

@@ -10,7 +10,7 @@ import {LoadingIcon} from "../Components/LoadingIcon.js"
 import NavbarUp from "../Components/NavbarUp"
 import { ProductsDetails } from "../Components/ProductsDisplays"
 import SideBar from "../Components/SideBar"
-import { DarkBlue, LightBlue, LightGray, White } from "../Settings/colors"
+import { DarkBlue, DarkGray, LightBlue, LightGray, White } from "../Settings/colors"
 import { BackEnd_Products } from "../Settings/urls"
 
 export default function ProductInfoPage() {
@@ -122,11 +122,12 @@ export default function ProductInfoPage() {
                         copywrite={product.copy} qtd={product.qtd} type={product.type} />
 
                         <article>
+                            
                             <h2> Políticas de Compras:</h2>
                             <Link to={`/${user.name}/termos_condicoes`}>Política de Reeembolso</Link>
                             <Link to={`/${user.name}/termos_condicoes`}>Parcelamentos</Link>
                             <Link to={`/${user.name}/termos_condicoes`}>Entregas</Link>                       
-
+                            
                             <form onSubmit={(e) => adicionarCarrinho(e)}>
                                 <div>
                                     <label htmlFor="qtd">Quantidade:</label>
@@ -151,16 +152,17 @@ export default function ProductInfoPage() {
     )
 }
 const InfoStyle = styled.main`
+    display: flex;
+    flex-direction: column;
     background-color: ${LightBlue};
     min-height: 100vh;
-    display: flex;
     margin-top:60px;
 
-    
-
     .info-display{
+        display: flex;
         margin: 0px auto;
         width: 100%;
+        justify-content: space-between;
 
         height: fit-content;
         background-color: ${White};
@@ -199,6 +201,9 @@ const InfoStyle = styled.main`
         }
 
         article{
+            display: flex;
+            flex-direction: column;
+
             border-left:1px ${LightGray} solid ;
             margin: 10px 0px;
             width: 50%;
@@ -216,10 +221,10 @@ const InfoStyle = styled.main`
                 margin: 10px;
             }
             a{
-                color: ${LightBlue};
+                color: ${DarkGray};
                 text-decoration: none;
                 transition: 0.2s;
-                margin: 20px 10px;
+                margin: 10px 10px;
 
                 :hover{
                     color: ${DarkBlue};

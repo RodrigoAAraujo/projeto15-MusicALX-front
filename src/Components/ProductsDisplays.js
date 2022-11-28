@@ -129,28 +129,25 @@ const ProductCartStyle = styled.div`
 
 const ProductDetailStyle = styled.div`
     padding: 15px;
-    margin: 10px 0px;
+    margin: 10px 20px 10px 10px;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
     max-width: 1100px;
-    width: 60%;
+    width: 300px;
 
     @media (max-width: 1080px){
-        margin-left: 45px;
+        margin-left: 10px;
         width: 100%;
     }
     @media (max-width: 500px){
-        flex-direction: column;
-        padding: 0px;
+        padding-left: 10px;
     }
 
     .info{
         width: 90%;
-        margin-left: 20px;
-
         @media(max-width:500px){
-            margin: auto;
+            margin: 0;
         }
     }
 
@@ -167,16 +164,17 @@ const ProductDetailStyle = styled.div`
             flex-direction: column;
             padding: 5px 0px;
             align-items: flex-start;
-            border-top: 1px solid ${LightGray};
-            border-bottom: 1px solid ${LightGray};
+            border: 1px solid ${LightGray};
+            border-radius
             width: 100%;
             margin: 20px 0px;
-            h4{
-                font-size: 24px;
+
+            h4 {
+                font-size: 20px;
                 font-weight: 500;
 
             }
-            p{
+            p {
                 margin: 5px 0px;
             }
         }
@@ -186,11 +184,11 @@ const ProductDetailStyle = styled.div`
         object-fit: cover;
         border-radius: 10px;
         aspect-ratio: 1;
-        width: 50%;
+        width: 20%;
     }
 
     h2{
-        font-size: 20px;
+        font-size: 24px;
         font-weight: 500;
     }
     h3{
@@ -201,18 +199,16 @@ const ProductDetailStyle = styled.div`
 
 const ProductDashStyle = styled.div`
     background-color: ${White};
-    padding: 8px;
-    margin: 10px 0px;
-    border-radius: 5px;
-    margin: 6px;
+    padding: 10px 10px;
+    margin: 10px 10px;
+    border-radius: 6px;
     cursor: pointer;
-    width: 160px;
+    width: 280px;
 
     div{
         display: flex;
         flex-direction: column;
         align-items: center;
-        
     }
 
     img{
@@ -227,14 +223,14 @@ const ProductDashStyle = styled.div`
         font-weight: 500;
         overflow-x: hidden;
         word-break: break-all;
-        margin-bottom: 4px;
+        margin: 4px 0 8px 0; 
         align-self: flex-start;
 
     }
     h3{
         width: 40%;
         margin-top: 6px;
-        font-size: 15px;
+        font-size: 18px;
         align-self: flex-start;
     }
 `

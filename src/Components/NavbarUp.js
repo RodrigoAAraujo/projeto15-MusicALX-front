@@ -22,7 +22,7 @@ export default function NavbarUp(){
                     <ion-icon name="search"></ion-icon>
                 </button>
                 <form>
-                    <input placeholder='Filtrar..'></input>
+                    <input placeholder='filtrar..'></input>
                 </form>
             </nav>
             <div>
@@ -72,8 +72,9 @@ const NavStyle = styled.nav`
         }
 
         button{
-            height: 100%;
-            padding: 4.5px;
+            display: flex;
+            align-items: center;
+            height: 36px;
             font-size: 22px;
             border-radius: 4px 0px 0px 4px;
             cursor: pointer;

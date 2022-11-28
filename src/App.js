@@ -6,6 +6,7 @@ import GlobalReset from './Assets/Styles/GlobalReset';
 import ProductInfoPage from './Pages/ProductInfoPage';
 import RegisterProductPage from "./Pages/RegisterProductPage";
 import TermsPage from "./Pages/TermsPage";
+import PaymentPage from "./Pages/PaymentPage";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route element={<ProductInfoPage/>} path="/:name/produtos/:idProduto"/>
         <Route element={<RegisterProductPage/>} path="/:name/cadastrar-produto"/>
         <Route element={<TermsPage/>} path="/:name/termos_condicoes"/>
+        <Route element={<PaymentPage/>} path="/:name/carrinho/pagamento"/>
       </Routes>
     </BrowserRouter>
   )
