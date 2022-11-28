@@ -1,12 +1,10 @@
-import axios from "axios"
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { CartContext } from "../API/cart"
 import { SidebarContext } from "../API/sidebar"
 import { UserContext } from "../API/user"
-import { DarkGray, DarkRed, Gray, LightBlue, LightGray, LigthGray, LigthRed, White } from "../Settings/colors"
-import { BackEnd_Payment } from "../Settings/urls"
+import { DarkGray, DarkRed, Gray, LightBlue, LightGray, LigthRed, White } from "../Settings/colors"
 import { LoadingIcon } from "./LoadingIcon"
 import { ProductsCart } from "./ProductsDisplays"
 
@@ -34,7 +32,7 @@ function UserInfo() {
     return (
         <UserInfoStyle>
             <section>
-                <img src={user?.user.image} />
+                <img src={user?.user.image} alt="profile pic" />
                 <ion-icon name="log-out-outline" onClick={() => { localStorage.removeItem("user"); navigate("/") }}></ion-icon>
             </section>
 
