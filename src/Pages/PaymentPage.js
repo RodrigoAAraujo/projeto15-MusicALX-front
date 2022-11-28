@@ -66,10 +66,10 @@ export default function PaymentPage({product, image, qtd, value, position}) {
         <PaymentBox>
           <h3>Insira os dados do cartão:</h3>
           <Forms >
-            <input type="text" onChange={() => Change()} placeholder=" Nome impresso no cartão" name='cardName' />
-            <input type="text" onChange={() => Change()} placeholder=" Digitos do cartão" name='cardNumber' />
-            <input type="password" onChange={() => Change()} placeholder=" Código de segurança" name='securityNumber' />
-            <input type="text" onChange={() => Change()} placeholder=" Validade */*" name='expirationDate' />
+            <input type="text" onChange={() => Change()} placeholder=" Nome impresso no cartão" name='cardName' required/>
+            <input type="text" onChange={() => Change()} placeholder=" Digitos do cartão" name='cardNumber' required/>
+            <input type="password" onChange={() => Change()} placeholder=" Código de segurança" name='securityNumber' required />
+            <input type="text" onChange={() => Change()} placeholder=" Validade */*" name='expirationDate' required/>
             <button onClick={() => Pay()}>
               <p>Finalizar pedido</p>
             </button>
