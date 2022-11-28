@@ -1,5 +1,5 @@
 import axios from "axios"
-import { useContext, useEffect, useRef } from "react"
+import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { CartContext } from "../API/cart"
@@ -49,8 +49,6 @@ function Cart() {
     const { user } = useContext(UserContext)
     const { cart, setCart } = useContext(CartContext)
     const navigate = useNavigate()
-
-
 
     function Pay() {
         console.log(cart)

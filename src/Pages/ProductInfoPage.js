@@ -6,7 +6,7 @@ import styled from "styled-components"
 import { CartContext } from "../API/cart"
 import { UserContext } from "../API/user"
 import Footer from "../Components/Footer"
-import {LoadingIcon} from "../Components/LoadingIcon.js"
+import { LoadingIcon } from "../Components/LoadingIcon.js"
 import NavbarUp from "../Components/NavbarUp"
 import { ProductsDetails } from "../Components/ProductsDisplays"
 import SideBar from "../Components/SideBar"
@@ -40,23 +40,23 @@ export default function ProductInfoPage() {
                 .catch(err => {
                     console.log(err)
                 })
-            
+
         } else {
             navigate("/")
         }
     }, [])
 
 
-    function optionConfig(e){
+    function optionConfig(e) {
         const array = []
 
-        for(let i = 1; i <= e; i++){
+        for (let i = 1; i <= e; i++) {
             array.push(i)
         }
         setOptions(array)
     }
 
-    function adicionarCarrinho(e){
+    function adicionarCarrinho(e) {
         e.preventDefault()
 
         const body = {
@@ -67,7 +67,7 @@ export default function ProductInfoPage() {
             image: product.image
         }
 
-        if(cart.find(e => e.id === body.id) !== undefined){
+        if (cart.find(e => e.id === body.id) !== undefined) {
             const index = cart.find(e => e.id === body.id)
             const position = cart.indexOf(index)
 
@@ -76,8 +76,8 @@ export default function ProductInfoPage() {
             const summed = current + qtd
             body.qtd = summed
 
-            if (summed > product.qtd){
-                body.qtd = options[options.length -1]
+            if (summed > product.qtd) {
+                body.qtd = options[options.length - 1]
             }
 
             //Adding in cart
@@ -86,26 +86,26 @@ export default function ProductInfoPage() {
             let tempo = newCart[position]
             newCart[position] = newCart[newCart.length - 1]
             newCart[newCart.length - 1] = tempo
-            
+
             newCart.pop()
             newCart.push(body)
 
-            
+
 
             setCart(newCart)
-        }else{
+        } else {
             console.log(cart)
             setCart([...cart, body])
         }
-        
+
     }
 
-    if(product === null){
-        return(
+    if (product === null) {
+        return (
             <>
                 <NavbarUp />
                 <SideBar />
-                <LoadingIcon/>
+                <LoadingIcon />
             </>
         )
     }
@@ -119,15 +119,15 @@ export default function ProductInfoPage() {
                     null :
                     <>
                         <ProductsDetails product={product.product} image={product.image} value={product.value} seller={product.seller}
-                        copywrite={product.copy} qtd={product.qtd} type={product.type} />
+                            copywrite={product.copy} qtd={product.qtd} type={product.type} />
 
                         <article>
-                            
+
                             <h2> Políticas de Compras:</h2>
                             <Link to={`/${user.name}/termos_condicoes`}>Política de Reeembolso</Link>
                             <Link to={`/${user.name}/termos_condicoes`}>Parcelamentos</Link>
-                            <Link to={`/${user.name}/termos_condicoes`}>Entregas</Link>                       
-                            
+                            <Link to={`/${user.name}/termos_condicoes`}>Entregas</Link>
+
                             <form onSubmit={(e) => adicionarCarrinho(e)}>
                                 <div>
                                     <label htmlFor="qtd">Quantidade:</label>
@@ -141,12 +141,12 @@ export default function ProductInfoPage() {
                         </article>
                     </>
                 }
+                <div className="description">
+                <h1>Descrição do Produto</h1>
+                <p>{product.copy}</p>
+                </div>
             </section>
-        
-            <h1>Descrição do Produto</h1>
-            <p>{product.copy}</p>
-
-            <Footer/>
+            <Footer />
 
         </InfoStyle>
     )
@@ -155,7 +155,7 @@ const InfoStyle = styled.main`
     display: flex;
     flex-direction: column;
     background-color: ${LightBlue};
-    min-height: 100vh;
+
     margin-top:60px;
 
     .info-display{
@@ -163,10 +163,18 @@ const InfoStyle = styled.main`
         margin: 0px auto;
         width: 100%;
         justify-content: space-between;
-
         height: fit-content;
         background-color: ${White};
         display: flex;
+
+        .description {
+            padding: 10px;
+            border-radius: 8px;
+            background-color: ${LightBlue};
+            color: ${DarkGray};
+            margin: 0 20px;
+            height: fit-content;
+        }
 
         @media (max-width: 1080px){
             flex-direction: column;
@@ -210,7 +218,7 @@ const InfoStyle = styled.main`
 
             @media(max-width: 1080px){
                 width: 90%;
-                border-top: 1px ${LightGray} solid ;
+                border-top: 1px ${DarkGray} solid ;
                 border-left: none;
                 margin:auto;
             }
