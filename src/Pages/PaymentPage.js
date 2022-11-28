@@ -5,16 +5,41 @@ import { UserContext } from "../API/user"
 import logo from "../Assets/imgs/logo.png"
 import { DarkBlue, DarkerGray, DarkGray, LightBlue, LightGray, LigthGray, White } from "../Settings/colors"
 import swal from 'sweetalert';
+import { BackEnd_Payment } from '../Settings/urls';
+import axios from 'axios';
 
 export default function PaymentPage({product, image, qtd, value, position}) {
   const { user } = useContext(UserContext)
   const { cart, setCart } = useContext(CartContext)
   const [values, setValues] = useState({ cardName: '', cardNumber: '', securityNumber: '', expirationDate: '' });
+  const[total, setTotal] = useState(0)
 
   const Change = (e) => {setValues({ ...values, [e.target.name]: e.target.value });}
 
-  // let total = 
-  //   Number(product.value.replace("R$", "").replace(".", "").replace(",", ".").trim()) += product.value
+  useEffect(()=>{
+    let sum = 0
+    console.log(cart)
+    cart.forEach((e) => sum += Number(e.value.replace(",", ".").replace("R$", "")) * e.qtd)
+    console.log(sum)
+    setTotal(sum)
+  })
+
+  function Pay() {
+
+    axios.post(BackEnd_Payment, cart, { headers: { Authorization: `Bearer ${user.token}` }, User: `${user.email}` })
+        .then(res => {
+          console.log(res)
+          setCart([])
+          swal("Compra realizada com sucesso",
+            { icon: "success", buttons: "Prosseguir" })
+        })
+        .catch(err => {
+          console.log(err)
+          swal(err.response.data[0], {
+            className: "red-bg",
+          });
+        })
+  }
 
   return (
     <>
@@ -26,28 +51,26 @@ export default function PaymentPage({product, image, qtd, value, position}) {
             {cart.map((product, index) => (
               <Products>
                 <p>{product.product}</p>
-                <p>R$ {product.value}0</p>
+                <p>R$ {product.value}</p>
+                <p>Qtd: {product.qtd}</p>
               </Products>
             ))}
           </OrderDescription>
           <Total>
             <h5>Total da compra:
 
-              {/* R$ {total.toFixed(2)} */}
+              {` R$ ${total.toFixed(2)} `}
               </h5>
           </Total>
         </HeaderPage>
         <PaymentBox>
           <h3>Insira os dados do cartão:</h3>
           <Forms >
-            <input type="text" onChange={Change} placeholder=" Nome impresso no cartão" name='cardName' />
-            <input type="text" onChange={Change} placeholder=" Digitos do cartão" name='cardNumber' />
-            <input type="password" onChange={Change} placeholder=" Código de segurança" name='securityNumber' />
-            <input type="text" onChange={Change} placeholder=" Validade */*" name='expirationDate' />
-            <button onClick={() =>
-            (swal("Compra realizada com sucesso",
-              { icon: "success", buttons: "Prosseguir" })
-            )}>
+            <input type="text" onChange={() => Change()} placeholder=" Nome impresso no cartão" name='cardName' />
+            <input type="text" onChange={() => Change()} placeholder=" Digitos do cartão" name='cardNumber' />
+            <input type="password" onChange={() => Change()} placeholder=" Código de segurança" name='securityNumber' />
+            <input type="text" onChange={() => Change()} placeholder=" Validade */*" name='expirationDate' />
+            <button onClick={() => Pay()}>
               <p>Finalizar pedido</p>
             </button>
           </Forms>

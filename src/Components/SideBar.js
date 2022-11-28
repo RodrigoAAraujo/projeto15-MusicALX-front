@@ -50,19 +50,6 @@ function Cart() {
     const { cart, setCart } = useContext(CartContext)
     const navigate = useNavigate()
 
-    function Pay() {
-        console.log(cart)
-
-        axios.post(BackEnd_Payment, cart, { headers: { Authorization: `Bearer ${user.token}` }, User: `${user.email}` })
-            .then(res => {
-                console.log(res)
-                setCart([])
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
-
     return (
         <CartStyle>
             <h1>Carrinho</h1>
@@ -77,7 +64,6 @@ function Cart() {
                     <section>
                         <button onClick={() => {
                             navigate(`/${user.name}/carrinho/pagamento`)
-                            Pay()
                         }}>Finalizar Compra
                         </button>
                         <p onClick={() => setCart([])}>Limpar Tudo</p>
