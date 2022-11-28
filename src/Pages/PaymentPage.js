@@ -28,11 +28,16 @@ export default function PaymentPage({product, image, qtd, value, position}) {
 
     axios.post(BackEnd_Payment, cart, { headers: { Authorization: `Bearer ${user.token}` }, User: `${user.email}` })
         .then(res => {
-            console.log(res)
-            setCart([])
+          console.log(res)
+          setCart([])
+          swal("Compra realizada com sucesso",
+            { icon: "success", buttons: "Prosseguir" })
         })
         .catch(err => {
-            console.log(err)
+          console.log(err)
+          swal(err.response.data[0], {
+            className: "red-bg",
+          });
         })
   }
 
@@ -65,11 +70,8 @@ export default function PaymentPage({product, image, qtd, value, position}) {
             <input type="text" onChange={() => Change()} placeholder=" Digitos do cartão" name='cardNumber' />
             <input type="password" onChange={() => Change()} placeholder=" Código de segurança" name='securityNumber' />
             <input type="text" onChange={() => Change()} placeholder=" Validade */*" name='expirationDate' />
-            <button onClick={() =>
-            (swal("Compra realizada com sucesso",
-              { icon: "success", buttons: "Prosseguir" })
-            )}>
-              <p onClick={() => Pay()}>Finalizar pedido</p>
+            <button onClick={() => Pay()}>
+              <p>Finalizar pedido</p>
             </button>
           </Forms>
         </PaymentBox>
