@@ -28,14 +28,14 @@ export default function PaymentPage() {
 
   function Pay() {
 
-    axios.post(BackEnd_Payment, cart, { headers: { Authorization: `Bearer ${user.token}` }, User: `${user.email}` })
+    axios.post(BackEnd_Payment, cart, { headers: { Authorization: `Bearer ${user.token}` , User: `${user.user.email}` }})
         .then(res => {
           console.log(res)
           setCart([])
           swal({
             title: "Compra realizada com sucesso!",
           });
-          navigate(`/${res.data.user.name}/dashboard`);
+          navigate(`/${user.user.name}/dashboard`);
         })
         .catch(err => {
           console.log(err)

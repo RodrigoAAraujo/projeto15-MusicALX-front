@@ -75,9 +75,9 @@ function Cart() {
 
 const SideBarStyle = styled.aside`
     position: fixed;
-    top: 60px; left: ${props => props.on ? "0px" : "-285px"};
+    top: 60px; left: ${props => props.on ? "0px" : "-300px"};
     background-color: ${White};
-    width: 285px;
+    width: 300px;
     height: 100%;
     padding: 14px;
     transition: 0.6s ease-out;
@@ -148,10 +148,8 @@ const CartStyle = styled.div`
         button{
             padding: 5px 10px;
             border-radius: 5px;
-
             font-weight: 400;
             font-size: 16px;
-
             transition: 0.4s;
             cursor: pointer;
 
@@ -162,10 +160,9 @@ const CartStyle = styled.div`
         }
 
         p{
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 500;
             color: ${LigthRed};
-            align-self: flex-start;
             cursor: pointer;
             transition: 0.4s;
 
