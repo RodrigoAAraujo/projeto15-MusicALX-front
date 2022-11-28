@@ -128,7 +128,7 @@ const ProductCartStyle = styled.div`
 `
 
 const ProductDetailStyle = styled.div`
-    padding: 15px;
+    padding: 15px 25px 15px 15px;
     margin: 10px 20px 10px 10px;
     border-radius: 5px;
     display: flex;
