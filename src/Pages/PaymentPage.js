@@ -1,20 +1,22 @@
 import styled from 'styled-components';
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom"
 import { CartContext } from "../API/cart"
 import { UserContext } from "../API/user"
 import logo from "../Assets/imgs/logo.png"
-import { DarkBlue, DarkerGray, DarkGray, LightBlue, LightGray, LigthGray, White } from "../Settings/colors"
+import { DarkBlue, DarkerGray, DarkGray, LightBlue, White } from "../Settings/colors"
 import swal from 'sweetalert';
 import { BackEnd_Payment } from '../Settings/urls';
 import axios from 'axios';
 
-export default function PaymentPage({product, image, qtd, value, position}) {
+export default function PaymentPage() {
+  const navigate = useNavigate()
   const { user } = useContext(UserContext)
   const { cart, setCart } = useContext(CartContext)
   const [values, setValues] = useState({ cardName: '', cardNumber: '', securityNumber: '', expirationDate: '' });
   const[total, setTotal] = useState(0)
 
-  const Change = (e) => {setValues({ ...values, [e.target.name]: e.target.value });}
+  const change = (e) => {setValues({ ...values, [e.target.name]: e.target.value });}
 
   useEffect(()=>{
     let sum = 0
@@ -22,7 +24,7 @@ export default function PaymentPage({product, image, qtd, value, position}) {
     cart.forEach((e) => sum += Number(e.value.replace(",", ".").replace("R$", "")) * e.qtd)
     console.log(sum)
     setTotal(sum)
-  })
+  }, [])
 
   function Pay() {
 
@@ -30,8 +32,10 @@ export default function PaymentPage({product, image, qtd, value, position}) {
         .then(res => {
           console.log(res)
           setCart([])
-          swal("Compra realizada com sucesso",
-            { icon: "success", buttons: "Prosseguir" })
+          swal({
+            title: "Compra realizada com sucesso!",
+          });
+          navigate(`/${res.data.user.name}/dashboard`);
         })
         .catch(err => {
           console.log(err)
@@ -58,7 +62,6 @@ export default function PaymentPage({product, image, qtd, value, position}) {
           </OrderDescription>
           <Total>
             <h5>Total da compra:
-
               {` R$ ${total.toFixed(2)} `}
               </h5>
           </Total>
@@ -66,10 +69,10 @@ export default function PaymentPage({product, image, qtd, value, position}) {
         <PaymentBox>
           <h3>Insira os dados do cartão:</h3>
           <Forms >
-            <input type="text" onChange={() => Change()} placeholder=" Nome impresso no cartão" name='cardName' required/>
-            <input type="text" onChange={() => Change()} placeholder=" Digitos do cartão" name='cardNumber' required/>
-            <input type="password" onChange={() => Change()} placeholder=" Código de segurança" name='securityNumber' required />
-            <input type="text" onChange={() => Change()} placeholder=" Validade */*" name='expirationDate' required/>
+            <input type="text" onChange={change} placeholder=" Nome impresso no cartão" name='cardName' required/>
+            <input type="text" onChange={change} placeholder=" Digitos do cartão" name='cardNumber' required/>
+            <input type="password" onChange={change} placeholder=" Código de segurança" name='securityNumber' required />
+            <input type="text" onChange={change} placeholder=" Validade */*" name='expirationDate' required/>
             <button onClick={() => Pay()}>
               <p>Finalizar pedido</p>
             </button>
@@ -120,6 +123,7 @@ const OrderDescription = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 20px 20px 20px;
   width: 100%;
   background-color: ${White};
   border-radius: 8px;
@@ -153,12 +157,12 @@ const Products = styled.div`
   display: flex;
 
   :first-child {
-    margin-top: 25px;
+    margin-top: 20px;
   }
 
   p {
-    padding: 15px 15px;
-    min-width: 240px;
+  
+    min-width: 150px;
     text-align: center;
     font-weight: 550;
   }
