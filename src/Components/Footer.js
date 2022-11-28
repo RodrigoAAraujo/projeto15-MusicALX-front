@@ -24,13 +24,14 @@ const FooterStyle = styled.footer`
     align-items: center;
     justify-content: center;
 
-    div{
+    div {
         height: 1px;
         width: 300px;
         background-color: #000000;
         margin: 4px
     }
-    h5{
+
+    h5 {
         margin: 2px 0px 8px 0; 
         font-weight: 500;
         font-size: 14px;

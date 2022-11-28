@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { BackEnd_Products } from "../Settings/urls"
 import axios from "axios"
 import { ProductsDashboard } from "./ProductsDisplays"
-import { DarkBlue, LightBlue } from "../Settings/colors"
+import { DarkerGray, LightBlue } from "../Settings/colors"
 import { UserContext } from "../API/user"
 import { useNavigate } from "react-router-dom"
 import {LoadingIconSmall} from "./LoadingIcon.js"
@@ -50,14 +50,15 @@ export default function SlideProducts({type}){
 }
 
 const SlideProductsStyle = styled.div`
-    max-height: 300px;
-    padding: 20px;
+    max-height: 280px;
+    margin: 10px 20px 0 20px;
     background-color: ${LightBlue};
 
     h2{
+        padding-left: 10px;
         font-size: 20px;
         font-weight: 400;
-        margin-bottom: 10px;
+        margin: 10px 0 5px 0;
     }
     
     .display-products{

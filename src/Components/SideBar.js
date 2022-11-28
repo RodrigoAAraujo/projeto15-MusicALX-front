@@ -7,7 +7,7 @@ import { SidebarContext } from "../API/sidebar"
 import { UserContext } from "../API/user"
 import { DarkGray, DarkRed, Gray, LightBlue, LightGray, LigthGray, LigthRed, White } from "../Settings/colors"
 import { BackEnd_Payment } from "../Settings/urls"
-import {LoadingIcon }from "./LoadingIcon"
+import { LoadingIcon } from "./LoadingIcon"
 import { ProductsCart } from "./ProductsDisplays"
 
 export default function SideBar() {
@@ -25,17 +25,17 @@ function UserInfo() {
     const { user } = useContext(UserContext)
     const navigate = useNavigate()
 
-    if(user.user === undefined){
-        return(
-            <LoadingIcon/>
+    if (user.user === undefined) {
+        return (
+            <LoadingIcon />
         )
     }
 
     return (
         <UserInfoStyle>
             <section>
-                <img src={user?.user.image}/>
-                <ion-icon name="log-out-outline" onClick={() => {localStorage.removeItem("user"); navigate("/")}}></ion-icon>
+                <img src={user?.user.image} />
+                <ion-icon name="log-out-outline" onClick={() => { localStorage.removeItem("user"); navigate("/") }}></ion-icon>
             </section>
 
             <h3>{user?.user.name}</h3>
@@ -52,15 +52,15 @@ function Cart() {
 
 
 
-    function Pay(){
+    function Pay() {
         console.log(cart)
 
-        axios.post(BackEnd_Payment, cart, { headers:{Authorization: `Bearer ${user.token}`}, User: `${user.email}`})
-            .then(res =>{
+        axios.post(BackEnd_Payment, cart, { headers: { Authorization: `Bearer ${user.token}` }, User: `${user.email}` })
+            .then(res => {
                 console.log(res)
                 setCart([])
             })
-            .catch(err =>{
+            .catch(err => {
                 console.log(err)
             })
     }
@@ -73,12 +73,12 @@ function Cart() {
                     <h2>Carrinho Vazio</h2>
                 </div> :
                 <>
-                    {cart.map((p, index) => 
-                        <ProductsCart product={p.product} image={p.image} qtd={p.qtd} value={p.value} position={index}/>
+                    {cart.map((p, index) =>
+                        <ProductsCart product={p.product} image={p.image} qtd={p.qtd} value={p.value} position={index} />
                     )}
                     <section>
-                        <button onClick={() =>{
-                            // navigate(`/${user.name}/carrinho/pagamento`)
+                        <button onClick={() => {
+                            navigate(`/${user.name}/carrinho/pagamento`)
                             Pay()
                         }}>Finalizar Compra
                         </button>
@@ -93,18 +93,15 @@ function Cart() {
 
 const SideBarStyle = styled.aside`
     position: fixed;
-    top: 60px; left: ${props => props.on ? "0px" : "-260px"};
+    top: 60px; left: ${props => props.on ? "0px" : "-285px"};
     background-color: ${White};
-    width: 260px;
+    width: 285px;
     height: 100%;
-
+    padding: 14px;
     transition: 0.6s ease-out;
 `
 
 const UserInfoStyle = styled.div`
-    padding: 10px;
-    border-top: 1px ${LightGray} solid;
-
     section{
         display: flex;
         align-items: center;
@@ -124,7 +121,7 @@ const UserInfoStyle = styled.div`
         }
 
         img{
-            width: 50px;
+            width: 60px;
             border-radius:50% ;
             aspect-ratio: 1;
             object-fit: cover;
@@ -140,12 +137,12 @@ const UserInfoStyle = styled.div`
         h4{
         font-size: 20px;
         font-weight: 400;
+        margin: 5px 0 10px 0;
         color: ${DarkGray};
     }
 `
 
 const CartStyle = styled.div`
-    padding: 10px;
     border-top: 1px ${LightGray} solid;
 
     .empty{
